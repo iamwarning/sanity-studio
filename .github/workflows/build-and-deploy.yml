@@ -42,7 +42,7 @@ jobs:
     needs: build
     environment:
       name: production
-      url: ${{ secrets.URL }}
+      url: https://iamwarning.github.io/sanity-backend/studio
     steps:
       - name: Download Artifact
         uses: actions/download-artifact@v3
