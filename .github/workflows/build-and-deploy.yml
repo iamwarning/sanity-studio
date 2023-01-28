@@ -46,9 +46,9 @@ jobs:
     name: Deploy Sanity
     runs-on: ubuntu-latest
     needs: build
-    environment:
-      name: github-pages
-      url: https://iamwarning.github.io/sanity-backend/studio
+#    environment:
+#      name: github-pages
+#      url: https://iamwarning.github.io/sanity-backend/studio
     steps:
       - name: Download Artifact
         uses: actions/download-artifact@v3
