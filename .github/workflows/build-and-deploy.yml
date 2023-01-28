@@ -25,20 +25,16 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
       - name: Install Project Dependencies
         run: npm ci
-        working-directory: studio
       - name: Build Sanity Backend
         run: npm run build --if-present
-        working-directory: studio
       - name: Verify Build
         run: ls -la dist
-        working-directory: studio
       - name: Upload artifact in order to deploy
         uses: actions/upload-artifact@v3
         with:
           name: production
           path: ./dist
           retention-days: 5
-        working-directory: studio
 
   deploy:
     name: Deploy Sanity
@@ -50,10 +46,8 @@ jobs:
         with:
           name: production
           path: ./dist
-        working-directory: studio
       - name: Display structure of downloaded files
         run: ls -la dist
-        working-directory: studio
       - name: Deploy Sanity by @${{ github.actor }}
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
@@ -63,4 +57,3 @@ jobs:
         with:
           github_token: ${{ secrets.GH_ACCESS_TOKEN }}
           publish_dir: ./dist
-        working-directory: studio
