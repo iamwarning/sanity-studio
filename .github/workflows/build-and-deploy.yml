@@ -40,6 +40,9 @@ jobs:
     name: Deploy Sanity
     runs-on: ubuntu-latest
     needs: build
+    environment:
+      name: production
+      url: https://jorgel.io
     steps:
       - name: Download Artifact
         uses: actions/download-artifact@v3
@@ -51,9 +54,6 @@ jobs:
       - name: Deploy Sanity by @${{ github.actor }}
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
-        environment:
-          name: production
-          url: https://jorgel.io
         with:
           github_token: ${{ secrets.GH_ACCESS_TOKEN }}
           publish_dir: ./dist
