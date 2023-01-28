@@ -46,7 +46,9 @@ jobs:
     name: Deploy Sanity
     runs-on: ubuntu-latest
     needs: build
-    environment: github-pages
+    environment:
+      name: production
+      url: https://jorgel.sanity.studio/
     steps:
       - name: Download Artifact
         uses: actions/download-artifact@v3
@@ -56,20 +58,6 @@ jobs:
       - name: Display structure of downloaded files
         run: ls -la dist
       - name: Deploy Sanity by @${{ github.actor }}
-        uses: peaceiris/actions-gh-pages@v3
-#        if: ${{ github.ref == 'refs/heads/main' }}
-        with:
-          github_token: ${{ secrets.GH_ACCESS_TOKEN }}
-          publish_dir: ./dist
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: ':rocket: Deploy to gh-pages '
-#      - name: Deploy Sanity by @${{ github.actor }}
-#        uses: JamesIves/github-pages-deploy-action@v4
-#        with:
-#          token: ${{ secrets.GH_ACCESS_TOKEN }}
-#          branch: gh-pages
-#          folder: ./dist
-#          git-config-name: 'github-actions[bot]'
-#          git-config-email: 'github-actions[bot]@users.noreply.github.com'
-#          commit-message: ':rocket: Deploy to gh-pages '
+        run: |
+          set -e
+          SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}" npx sanity deploy
