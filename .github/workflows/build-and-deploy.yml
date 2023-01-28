@@ -55,21 +55,21 @@ jobs:
           path: ./dist
       - name: Display structure of downloaded files
         run: ls -la dist
-#      - name: Deploy Sanity by @${{ github.actor }}
-#        uses: peaceiris/actions-gh-pages@v3
-##        if: ${{ github.ref == 'refs/heads/main' }}
-#        with:
-#          github_token: ${{ secrets.GH_ACCESS_TOKEN }}
-#          publish_dir: ./dist
-#          user_name: 'github-actions[bot]'
-#          user_email: 'github-actions[bot]@users.noreply.github.com'
-#          commit_message: ':rocket: Deploy to gh-pages '
       - name: Deploy Sanity by @${{ github.actor }}
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: peaceiris/actions-gh-pages@v3
+#        if: ${{ github.ref == 'refs/heads/main' }}
         with:
-          token: ${{ secrets.GH_ACCESS_TOKEN }}
-          branch: gh-pages
-          folder: ./dist
-          git-config-name: 'github-actions[bot]'
-          git-config-email: 'github-actions[bot]@users.noreply.github.com'
-          commit-message: ':rocket: Deploy to gh-pages '
+          github_token: ${{ secrets.GH_ACCESS_TOKEN }}
+          publish_dir: ./dist
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: ':rocket: Deploy to gh-pages '
+#      - name: Deploy Sanity by @${{ github.actor }}
+#        uses: JamesIves/github-pages-deploy-action@v4
+#        with:
+#          token: ${{ secrets.GH_ACCESS_TOKEN }}
+#          branch: gh-pages
+#          folder: ./dist
+#          git-config-name: 'github-actions[bot]'
+#          git-config-email: 'github-actions[bot]@users.noreply.github.com'
+#          commit-message: ':rocket: Deploy to gh-pages '
