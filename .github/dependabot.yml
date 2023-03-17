@@ -17,6 +17,8 @@ updates:
       timezone: "America/Mexico_City"
     commit-message:
       prefix: ⬆
+    assignees:
+      - "pawahtun"      
     labels:
       - "npm"
       - "dependencies"
