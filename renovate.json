@@ -2,5 +2,25 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base"
+  ],
+  "labels": ["dependencies", "npm"],
+  "timezone": "America/Mexico_City",
+  "schedule": ["after 7am"],
+  "enabledManagers": ["npm"],
+  "commitMessagePrefix": ":arrow_up: ",
+  "automerge": true,
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true,
+      "automergeType": "pr-comment",
+      "automergeComment": "This is looking good :lock: "
+    },
+    {
+      "matchDepTypes": ["devDependencies"],
+      "automerge": true,
+      "automergeType": "pr-comment",
+      "automergeComment": "This is looking good :lock: "
+    }
   ]
 }
